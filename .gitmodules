@@ -1,0 +1,21 @@
+[submodule "vim/vim-pathogen"]
+	path = vim/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen
+[submodule "link/.vim/bundle/powerline"]
+	path = link/.vim/bundle/powerline
+	url = https://github.com/Lokaltog/vim-powerline.git
+[submodule "link/.vim/bundle/puppet"]
+	path = link/.vim/bundle/puppet
+	url = git://github.com/rodjek/vim-puppet.git
+[submodule "link/.vim/nerdtree"]
+	path = link/.vim/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "link/.vim/bundle/nerdtree"]
+	path = link/.vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "link/.vim/bundle/vim-gitgutter"]
+	path = link/.vim/bundle/vim-gitgutter
+	url = git://github.com/airblade/vim-gitgutter.git
+[submodule "link/.oh-my-zsh"]
+	path = link/.oh-my-zsh
+	url = git://github.com/robbyrussell/oh-my-zsh.git

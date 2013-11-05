@@ -1,0 +1,18 @@
+# navigation
+alias ..="cd .."
+alias .="ls"
+alias la="ls -a"
+alias ll="ls -l"
+alias lsd='ls -lF ${colorflag} | grep "^d"'
+
+function mkcd () {
+  mkdir -p "$1"
+  cd "$1"
+}
+
+function psgrep () {
+  ps aux | grep "$1" | grep -v "grep"
+}
+
+# git aliases
+alias glog='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
