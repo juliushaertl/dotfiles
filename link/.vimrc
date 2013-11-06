@@ -7,6 +7,8 @@ set number
 
 " Graphical tuning
 syntax enable
+set laststatus=2
+set t_Co=256
 let g:solarized_termcolors=256
 set background=dark
 colorscheme smyck
