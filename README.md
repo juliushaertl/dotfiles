@@ -15,6 +15,12 @@ into ~/.dotfiles
 will remove the symbolic links and move the files from .dotfiles_old back to the
 homefolder. 
 
+## zsh
+
+Use zsh as your default shell
+
+    chsh -s /bin/zsh
+
 ## vim
 
 Vim is configured to use pathogen to install plugins, so everything in

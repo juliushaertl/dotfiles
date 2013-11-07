@@ -3,6 +3,7 @@
 	email = 
 [core]
 	excludesfile = ~/.gitignore_global
+	editor = vim
 [alias]
     merge-branch = !git checkout master && git merge @{-1}
     up = !git fetch origin && git rebase origin/master
