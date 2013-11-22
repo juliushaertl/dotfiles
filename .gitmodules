@@ -16,3 +16,6 @@
 [submodule "link/.oh-my-zsh"]
 	path = link/.oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
+[submodule "link/.vim/bundle/fugitive"]
+	path = link/.vim/bundle/fugitive
+	url = https://github.com/tpope/vim-fugitive.git
