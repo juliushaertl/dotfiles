@@ -1,6 +1,6 @@
 [user]
 	name = Julius Härtl
-	email = 
+	email = github@jus.li
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = vim
