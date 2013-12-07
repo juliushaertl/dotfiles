@@ -42,3 +42,5 @@ PS1=$BLUE'\u@\h '$YELLOW'\w'$RED'$(prompt_git_info)'$NIL' '
 
 # Load RVM into a shell session
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+
+complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh

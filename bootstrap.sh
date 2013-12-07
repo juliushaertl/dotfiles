@@ -32,6 +32,18 @@ then
     	ln -s "$DOTDIR/link/$f" ~/$f
     done
 
+    # System specific
+    if [[ "$OSTYPE" == "linux-gnu" ]]; then
+        echo "Install linux specific" 
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        echo "Install linux specific" 
+        brew bundle $DOTDIR/Brewfile
+    elif [[ "$OSTYPE" == "freebsd"* ]]; then
+        echo "Install freebsd specific" 
+        # ...
+    else
+        echo "Unknown OS" 
+    fi
 #
 # Restore from dotfile backup
 #
