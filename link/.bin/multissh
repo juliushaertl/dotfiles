@@ -1,6 +1,11 @@
 #!/bin/bash
 #
 # Use tmux to control multiple ssh servers at once
+# Usage: multissh host1 host2 host3 user@host4
+#
+# Custom key bindings
+#   Ctrl-b y  toggle synchronisation
+#   Ctrl-b e  Expand current pane
 #
 
 if [ "$#" == "0" ]
@@ -9,19 +14,34 @@ then
     exit
 fi
 
+
 sessionid=$(echo "$*" | md5sum -t | cut -d' ' -f 1)
 tmux new-session -d -s $sessionid
 
-for i in $*
-do
-    tmux splitw "ssh $i"
-done
+if [ -f "$1" ]
+then
+    while read line; do 
+        tmux splitw "ssh $line"
+        tmux select-layout even-vertical
+    done < $1
+else
+    for i in $*; do
+        tmux splitw "ssh $i"
+        tmux select-layout even-vertical > /dev/null
+    done
+fi
 
 tmux select-pane -t 0
 tmux kill-pane
 
-tmux select-layout even-vertical
-tmux set-window-option synchronize-panes on
+tmux select-pane -t 0
+tmux resize-pane -D 100
+tmux set-window-option synchronize-panes on > /dev/null
+
+# Hotkey synchronize panes
 tmux bind-key y set-window-option synchronize-panes
+
+# Hotkey expand pane
+tmux bind-key e resize-pane -D 100
 
 tmux attach-session -t $sessionid
