@@ -16,6 +16,9 @@
 [submodule "link/.oh-my-zsh"]
 	path = link/.oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
-[submodule "link/.vim/bundle/fugitive"]
-	path = link/.vim/bundle/fugitive
-	url = https://github.com/tpope/vim-fugitive.git
+[submodule "link/.vim/bundle/vim-airline"]
+	path = link/.vim/bundle/vim-airline
+	url = https://github.com/bling/vim-airline
+[submodule "link/.vim/bundle/vim-fugitive"]
+	path = link/.vim/bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git

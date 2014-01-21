@@ -13,6 +13,7 @@ HISTSIZE=10000
 HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help"
 export CLICOLOR=1
 export XTERM=xterm-color
+export TERM="xterm-256color"
 export MANPAGER="less -X"
 
 # Colors
