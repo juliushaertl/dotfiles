@@ -36,9 +36,21 @@ set expandtab
 " Dont divide words by
 set isk+=_,$,@,%,#,-
 
-let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat 
+let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 " Pathoge
+let g:pathogen_disabled = []
+call add(g:pathogen_disabled, 'powerline')
 call pathogen#infect()
+"let g:airline_powerline_fonts = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_theme='powerlineish'
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#empty_message = ' nobranch'
 
 " Enable Status line
 set laststatus=2
@@ -49,6 +61,9 @@ if has("autocmd")
 else
   set autoindent    " always set autoindenting on
 endif
+
+" Custom Command for trailing whitespaces
+com Tws :%s/\s\+$//
 
 " NERDTree
 map <F2> :NERDTreeToggle<CR>
