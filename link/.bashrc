@@ -15,6 +15,11 @@ export CLICOLOR=1
 export XTERM=xterm-color
 export TERM="xterm-256color"
 export MANPAGER="less -X"
+export SVN_EDITOR=vim
+export GIT_EDITOR=vim
+export VISUAL=vim
+export EDITOR=vim
+
 
 # Colors
 RED='\[\033[31m\]'
