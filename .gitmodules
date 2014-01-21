@@ -4,9 +4,6 @@
 [submodule "link/.vim/bundle/puppet"]
 	path = link/.vim/bundle/puppet
 	url = git://github.com/rodjek/vim-puppet.git
-[submodule "link/.vim/nerdtree"]
-	path = link/.vim/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
 [submodule "link/.vim/bundle/nerdtree"]
 	path = link/.vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
@@ -22,9 +19,3 @@
 [submodule "link/.vim/bundle/vim-fugitive"]
 	path = link/.vim/bundle/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
-[submodule "bundle/snipmate"]
-	path = bundle/snipmate
-	url = https://github.com/msanders/snipmate.vim.git
-[submodule "link/.vim/bundle/snipmate"]
-	path = link/.vim/bundle/snipmate
-	url = https://github.com/msanders/snipmate.vim.git
