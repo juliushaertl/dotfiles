@@ -1,11 +1,19 @@
+update
+upgrade
+
+install openssl
+install nmap
+install tmux
+
 install ack
 install hub
-install nmap
 install ssh-copy-id
-install tmux
 install wget
+install tree
+
 install git
 install vim
+install the_silver_searcher
 
 update
 doctor

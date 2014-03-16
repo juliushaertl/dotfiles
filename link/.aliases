@@ -1,8 +1,10 @@
 # navigation
 alias ..="cd .."
 alias .="ls"
+alias ls="ls -h"
 alias la="ls -a"
 alias ll="ls -l"
+alias lla="ls -la"
 alias lsd='ls -lF ${colorflag} | grep "^d"'
 alias tmux='TERM="xterm-256color" tmux'
 

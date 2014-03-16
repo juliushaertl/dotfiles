@@ -2,7 +2,7 @@
 
 ## install dotfiles
 
-    git clone git://gitub.com/juliushaertl/dotfiles.git ~/.dotfiles
+    git clone git://github.com/juliushaertl/dotfiles.git ~/.dotfiles
     cd ~/.dotfiles
     bash bootstrap.sh
 
@@ -44,5 +44,4 @@ Plugins can be upgraded with:
 
 ## TODO
 
-* Add bin folder at ~/bin
 * local configuration files eg. ~/.bashrc.local for machine specific changes
