@@ -1,7 +1,7 @@
 # navigation
 alias ..="cd .."
 alias .="ls"
-alias ls="ls -h"
+alias ls="ls -h --color"
 alias la="ls -a"
 alias ll="ls -l"
 alias lla="ls -la"
@@ -22,4 +22,8 @@ function sshsocks () {
 }
 
 # git aliases
-alias glog='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+alias gita='git add'
+alias gits='git status'
+alias gitc='git commit'
+alias gitp='git push'
+alias gitl='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
