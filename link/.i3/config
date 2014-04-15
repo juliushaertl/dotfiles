@@ -171,6 +171,8 @@ bindsym XF86AudioMute exec amixer -q set Master toggle
 bindsym XF86AudioPrev exec --no-startup-id mocp --previous
 bindsym XF86AudioNext exec --no-startup-id mocp --next
 bindsym XF86AudioPlay exec --no-startup-id mocp --toggle-pause
+bindsym XF86BridghtnessDown exec xbacklight -10
+bindsym XF86BridghtnessUp exec xbacklight +10
 bindsym $mod+XF86Eject exec i3lock
 
 #client.focused #aa0000 #660000 #EEEEEE
@@ -181,3 +183,4 @@ bindsym $mod+XF86Eject exec i3lock
 exec clipit
 exec dropboxd
 
+for_window [class="Xfce4-notifyd"] floating enable; border none; focus mode_toggle
