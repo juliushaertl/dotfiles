@@ -27,3 +27,6 @@ alias gits='git status'
 alias gitc='git commit'
 alias gitp='git push'
 alias gitl='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+
+# quick wifi switch
+alias sw='sudo netctl switch-to'

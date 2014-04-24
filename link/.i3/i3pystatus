@@ -32,7 +32,7 @@ status.register("temp",
 status.register("battery",
 #    format="{status}/{consumption:.2f}W {percentage:.2f}% [{percentage_design:.2f}%] {remaining:%E%hh:%Mm}",
     battery_ident="BAT0",
-    format="{status} {remaining:%E%hh:%Mm}",
+    format="{status} {percentage:.1f}% {remaining:%E%hh:%Mm}",
     alert=True,
     alert_percentage=5,
     status={
@@ -43,7 +43,7 @@ status.register("battery",
 status.register("battery",
 #    format="{status}/{consumption:.2f}W {percentage:.2f}% [{percentage_design:.2f}%] {remaining:%E%hh:%Mm}",
     battery_ident="BAT1",
-    format="{status} {remaining:%E%hh:%Mm}",
+    format="{status} {percentage:.1f}% {remaining:%E%hh:%Mm}",
     alert=True,
     alert_percentage=5,
     status={
@@ -96,6 +96,10 @@ status.register("wireless",
 # Format:
 # 42/128G [86G]
 status.register("disk",
+    path="/home",
+    format="/home {used}/{total}G",)
+
+status.register("disk",
     path="/",
     format="/ {used}/{total}G",)
 
@@ -104,6 +108,8 @@ status.register("disk",
 # Note: requires libpulseaudio from PyPI
 status.register("pulseaudio",
     format="♪ {volume}",)
+
+status.register("backlight",)
 
 # Shows mpd status
 # Format:

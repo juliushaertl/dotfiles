@@ -165,22 +165,42 @@ bar {
     font pango:DejaVu Sans 9
 }
 
+# custom keybindings
+
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 3%-
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 3%+
-bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
+
 bindsym XF86AudioPrev exec --no-startup-id mocp --previous
 bindsym XF86AudioNext exec --no-startup-id mocp --next
 bindsym XF86AudioPlay exec --no-startup-id mocp --toggle-pause
-bindsym XF86BridghtnessDown exec xbacklight -10
-bindsym XF86BridghtnessUp exec xbacklight +10
-bindsym $mod+XF86Eject exec i3lock
+
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -5
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +5
+
+bindsym $mod+Delete exec --no-startup-id i3lock -c 333333
+
+bindsym XF86Display exec --no-startup-id xrandr --auto
 
 #client.focused #aa0000 #660000 #EEEEEE
 #client.focused_inactive #333333 #222222 #DDDDDD
 #client.unfocused #333333 #222222 #DDDDDD
 
-#exec feh --bg-scale [WALLPAPER]
+exec feh --bg-center /home/jus/Pictures/Wallpapers/archlinux.png
 exec clipit
 exec dropboxd
+exec pidgin
 
+# workspace assignments
+assign [class="Thunderbird"] 2
+assign [class="Pidgin"] 3
+assign [class="Firefox"] 1
+assign [class="Steam"] 10
+
+# starting a specially named term automatically
+#exec --no-startup-id xfce4-terminal -name scratchpad -e /usr/bin/nano
+# # move this to scratchpad, if active
+# for_window [class="URxvt" instance="scratchpad"] move scratchpad
+
+# special window settings
 for_window [class="Xfce4-notifyd"] floating enable; border none; focus mode_toggle
