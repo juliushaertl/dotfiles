@@ -36,6 +36,9 @@ set expandtab
 " Dont divide words by
 set isk+=_,$,@,%,#,-
 
+" Make .md files markdown not modula2
+au BufRead,BufNewFile *.md set filetype=markdown
+
 let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 " Pathoge
 let g:pathogen_disabled = []
