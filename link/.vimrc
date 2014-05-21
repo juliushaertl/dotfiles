@@ -36,6 +36,9 @@ set expandtab
 " Dont divide words by
 set isk+=_,$,@,%,#,-
 
+" urxvt mouse scrolling
+set ttymouse=xterm2
+
 " Make .md files markdown not modula2
 au BufRead,BufNewFile *.md set filetype=markdown
 
