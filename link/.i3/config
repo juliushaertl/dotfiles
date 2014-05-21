@@ -18,13 +18,13 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:DejaVu Sans 9
+font pango:DejaVu Sans 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -162,7 +162,7 @@ bar {
         urgent_workspace   #2f343a #900000 #ffffff
     }
     font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-    font pango:DejaVu Sans 9
+    font pango:DejaVu Sans 10
 }
 
 # custom keybindings
@@ -190,6 +190,9 @@ exec feh --bg-center /home/jus/Pictures/Wallpapers/archlinux.png
 exec clipit
 exec dropboxd
 exec pidgin
+exec --no-startup-id dunst
+
+workspace_auto_back_and_forth yes
 
 # workspace assignments
 assign [class="Thunderbird"] 2
@@ -202,5 +205,3 @@ assign [class="Steam"] 10
 # # move this to scratchpad, if active
 # for_window [class="URxvt" instance="scratchpad"] move scratchpad
 
-# special window settings
-for_window [class="Xfce4-notifyd"] floating enable; border none; focus mode_toggle
