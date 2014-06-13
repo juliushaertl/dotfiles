@@ -86,6 +86,15 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+workspace 1 output DP-1-1
+workspace 2 output DP-1-1
+workspace 3 output DP-1-1
+workspace 4 output DP-1-1
+workspace 5 output DP-1-2
+workspace 6 output DP-1-2
+workspace 7 output DP-1-2
+workspace 8 output DP-1-2
+
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -115,7 +124,6 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # scratchpad
 #
@@ -148,7 +156,8 @@ mode "resize" {
 }
 
 bar {
-    status_command python $HOME/.i3/i3pystatus
+#    status_command python $HOME/.i3/i3pystatus
+    status_command python $HOME/working/i3pystatus/mytest.py
     position          top
     workspace_buttons yes
     tray_output primary
@@ -162,18 +171,13 @@ bar {
         urgent_workspace   #2f343a #900000 #ffffff
     }
     font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-    font pango:DejaVu Sans 10
+    font pango:DejaVu Sans 9
 }
 
 # custom keybindings
-
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 3%-
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 3%+
 bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
-
-bindsym XF86AudioPrev exec --no-startup-id mocp --previous
-bindsym XF86AudioNext exec --no-startup-id mocp --next
-bindsym XF86AudioPlay exec --no-startup-id mocp --toggle-pause
 
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -5
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +5
@@ -182,22 +186,19 @@ bindsym $mod+Delete exec --no-startup-id i3lock -c 333333
 
 bindsym XF86Display exec --no-startup-id xrandr --auto
 
-#client.focused #aa0000 #660000 #EEEEEE
-#client.focused_inactive #333333 #222222 #DDDDDD
-#client.unfocused #333333 #222222 #DDDDDD
-
-exec feh --bg-center /home/jus/Pictures/Wallpapers/archlinux.png
-exec clipit
-exec dropboxd
-exec pidgin
+exec --no-startup-id feh --bg-center /home/jus/Pictures/Wallpapers/archlinux.png
+exec --no-startup-id clipit
+exec --no-startup-id dropboxd
 exec --no-startup-id dunst
+exec --no-startup-id nm-applet
+exec --no-startup-id rofi
 
 workspace_auto_back_and_forth yes
 
 # workspace assignments
-assign [class="Thunderbird"] 2
+#assign [class="Thunderbird"] 2
 assign [class="Pidgin"] 3
-assign [class="Firefox"] 1
+#assign [class="Firefox"] 1
 assign [class="Steam"] 10
 
 # starting a specially named term automatically

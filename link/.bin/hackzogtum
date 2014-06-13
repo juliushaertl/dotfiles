@@ -1,0 +1,43 @@
+#!/bin/bash
+
+TMPFILE=/tmp/hackzogtum
+
+if [ ! -e "$TMPFILE" ] ; then
+    touch "$TMPFILE"
+fi
+
+DATA=$(curl http://in.hackzogtum-coburg.de/list.php 2>/dev/null )
+CONNECTED=$( echo "$DATA" | sed -r "s/(&nbsp;)+/\n/g" | sed -r "s/<\/br>//g" \
+    | head -n -1 )
+NUM=$(echo "$CONNECTED" | wc -l)
+LAST=$(cat $TMPFILE)
+
+if [[ -z "$CONNECTED" ]]
+then
+    MESSAGE="Nobody there ..."
+else
+    MESSAGE="$NUM online
+$CONNECTED"
+fi
+
+
+if [[ "$1" == "--update" ]] 
+then
+
+    if  [[ "$LAST" == "$MESSAGE" ]]
+    then
+        exit
+    fi
+    DIFF=$( diff -u <( echo "$LAST" ) <( echo "$MESSAGE" ) | tail -n +4 )
+    DISPLAY=:0 notify-send "in.hackzogtum\n$DIFF"
+
+else
+
+    echo "$MESSAGE"
+
+fi
+
+if [[ "$LAST" != "$MESSAGE" ]]
+then
+    echo "$MESSAGE" > $TMPFILE
+fi
