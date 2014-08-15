@@ -1,0 +1,56 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import os.path
+import re
+import argparse
+import unidecode
+
+def slugify(input, seperator='-', keep=['.']):
+
+    output = unidecode.unidecode(input)
+    output = output.encode('ascii', 'ignore').lower()
+    output = output.decode('utf-8')
+    
+    keep = ''.join(keep)
+    # Keep normal ascii chacacters, numbers and . 
+    output = re.sub(r'[^a-z0-9\.]+', seperator, output).strip('_')
+    output = re.sub(r'[%s]+'%seperator, seperator, output)
+    # TODO: replace . but not in file extension
+    # ext = output.split(".")[-1]
+
+    return output
+
+def main():
+
+    parser = argparse.ArgumentParser(
+        description='Rename files for compatibility in web')
+
+    parser.add_argument('files', metavar='file', nargs='+',
+        help='files to rename')
+    parser.add_argument('--dry', '-d', action='store_true', 
+        help='do not touch file names')
+    parser.add_argument('--lower', '-l', action='store_true', 
+        help='use lowercase characters')
+    parser.add_argument('--upper', '-u', action='store_true', 
+        help='use uppercase characters')
+    parser.add_argument('--seperator', '-s', default='-',
+        help='use custom separator (default: %(default)s)', metavar='s')
+    parser.add_argument('--keep', '-k', nargs='?')
+
+    args = parser.parse_args()
+
+    if args.dry:
+        print("= Running in dry mode - files will not get touched ==========")
+
+    for f in args.files:
+        old_file = str(f)
+        new_file = slugify(f,seperator=args.seperator)
+        print("%s -> %s" % ( str(f), str(new_file) ) )
+        if not args.dry:
+            os.rename(old_file, new_file)
+     
+
+if __name__ == "__main__":
+    main()        
