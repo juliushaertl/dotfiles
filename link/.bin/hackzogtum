@@ -1,16 +1,26 @@
 #!/bin/bash
+# 
+# Shell script to check for people who are currently at the hackzogtum coburg
+# hackerspace.
+# 
+# Install as cronjob
+# */5 * * * * /path/to/file --update
+#
 
 TMPFILE=/tmp/hackzogtum
+COUNTFILE=/home/jus/.hackzog-count
 
 if [ ! -e "$TMPFILE" ] ; then
     touch "$TMPFILE"
 fi
 
 DATA=$(curl http://in.hackzogtum-coburg.de/list.php 2>/dev/null )
-CONNECTED=$( echo "$DATA" | sed -r "s/(&nbsp;)+/\n/g" | sed -r "s/<\/br>//g" \
-    | head -n -1 )
+CONNECTED=$( echo "$DATA" | sed -r "s/<br>/\n/g"  )
 NUM=$(echo "$CONNECTED" | wc -l)
 LAST=$(cat $TMPFILE)
+TIME=$(date +%s)
+
+echo "$TIME $NUM" >> $COUNTFILE 
 
 if [[ -z "$CONNECTED" ]]
 then
@@ -21,7 +31,7 @@ $CONNECTED"
 fi
 
 
-if [[ "$1" == "--update" ]] 
+if [[ "$1" == "--update" || "$1" == "--update-diff" ]] 
 then
 
     if  [[ "$LAST" == "$MESSAGE" ]]
