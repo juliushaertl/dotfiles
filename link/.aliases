@@ -1,7 +1,7 @@
 # navigation
 alias ..="cd .."
 alias .="ls"
-alias ls="ls -h --color"
+alias ls="ls -h --color --group-directories-first"
 alias la="ls -a"
 alias ll="ls -l"
 alias lla="ls -la"
@@ -30,3 +30,15 @@ alias gitl='git log --graph --full-history --all --color --pretty=format:"%x1b[3
 
 # quick wifi switch
 alias sw='sudo netctl switch-to'
+
+# useful small scripts
+
+
+# useful small scripts
+function stopwatch(){
+  date1=`date +%s`; 
+   while true; do 
+    echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r"; 
+   done
+}
+

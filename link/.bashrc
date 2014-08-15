@@ -10,7 +10,7 @@ EDITOR="vim"
 HISTCONTROL=ignoredups
 HISTFILESIZE=10000
 HISTSIZE=10000
-HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help"
+HISTIGNORE="ls:cd:cd -:pwd:exit:* --help"
 export CLICOLOR=1
 export XTERM=xterm-color
 export TERM="xterm-256color"
@@ -49,6 +49,8 @@ PS1=$BLUE'\u@\h '$YELLOW'\w'$RED'$(prompt_git_info)'$NIL' '
 # Load RVM into a shell session
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
 
-complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
+complete -W "$(echo $(grep '^ssh ' .bash_history | sort -u | sed 's/^ssh //'))" ssh scp
+#complete -o default -o nospace -W "$(grep -i -e '^host ' ~/.ssh/config | awk '{print substr($0, index($0,$2))}' ORS=' ')" ssh scp sftp
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH"
