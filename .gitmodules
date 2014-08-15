@@ -19,3 +19,9 @@
 [submodule "link/.vim/bundle/vim-fugitive"]
 	path = link/.vim/bundle/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
+[submodule "link/.vim/bundle/nerdcommenter"]
+	path = link/.vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter
+[submodule "link/.vim/bundle/vim-simple-todo"]
+	path = link/.vim/bundle/vim-simple-todo
+	url = https://github.com/vitalk/vim-simple-todo
