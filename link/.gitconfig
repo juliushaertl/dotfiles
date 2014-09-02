@@ -1,6 +1,6 @@
 [user]
-	name = Julius Härtl
-	email = github@jus.li
+	name = Julius Haertl
+	email = jus@bitgrid.net
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = vim
@@ -26,3 +26,5 @@
 	untracked = cyan
 [push]
 	default = simple
+[diff]
+	tool = vimdiff
