@@ -1,0 +1,82 @@
+#!/bin/bash
+
+# define some xrandr layouts to use
+MODES=(internal station presentation)
+
+function mode_internal {
+	xrandr \
+		--output DP1 --off \
+		--output DP2-1 --off \
+		--output DP2-2 --off \
+		--output DP2-3 --off \
+		--output HDMI2 --off \
+		--output HDMI1 --off \
+		--output DP2 --off \
+		--output eDP1 --mode 1920x1080 --pos 0x0 --rotate normal 
+}
+
+function mode_station {
+	xrandr \
+	       --output eDP1 --off \
+	       --output DP1 --off \
+	       --output DP2-1 --mode 1920x1080 --pos 0x0 --rotate normal \
+	       --output DP2-2 --off \
+	       --output DP2-3 --mode 1920x1080 --pos 1920x0 --rotate normal \
+	       --output HDMI2 --off \
+	       --output HDMI1 --off \
+	       --output DP2 --off
+}
+function mode_presentation {
+	xrandr \
+		--output DP1 --mode 1024x768 --pos 1920x0 --rotate normal \
+		--output DP2-1 --off \
+		--output DP2-2 --off \
+		--output DP2-3 --off \
+		--output HDMI2 --off \
+		--output HDMI1 --off \
+		--output DP2 --off \
+		--output eDP1 --mode 1920x1080 --pos 0x0 --rotate normal 
+}
+
+function is_connected {
+	PORT=$1
+	xrandr | grep $PORT | grep -v disconnected
+}
+
+
+
+MODE=$1
+
+# Handeling dock / undock udev events
+
+if [[ "$ACTION" == "add" ]]
+then
+	mode_station
+	exit
+fi
+
+if [[ "$ACTION" == "remove" ]]
+then
+	mode_internal
+	exit
+fi
+
+# Switch to given mode
+
+if [[ ! -z "$MODE" ]]
+then
+	echo "Switching to mode $1"
+	eval mode_$1
+	exit
+fi
+
+# Automatic switching depending on connected monitors
+
+if [[ $( is_connected DP2-1 ) ]] && [[ $( is_connected DP2-3 ) ]]
+then
+	mode_station
+else
+	mode_internal
+fi
+
+
