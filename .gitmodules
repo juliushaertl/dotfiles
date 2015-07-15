@@ -25,3 +25,6 @@
 [submodule "link/.vim/bundle/vim-simple-todo"]
 	path = link/.vim/bundle/vim-simple-todo
 	url = https://github.com/vitalk/vim-simple-todo
+[submodule "link/.vim/bundle/vim-nerdtree-tabs"]
+	path = link/.vim/bundle/vim-nerdtree-tabs
+	url = https://github.com/jistr/vim-nerdtree-tabs.git
