@@ -1,48 +1,54 @@
-URxvt.saveLines: 1000
+URxvt.saveLines: 10000
+URxvt.letterSpace: 0
+URxvt.iso14755_52: false
+URxvt.iso14755: false
 URxvt.scrollBar: false
+URxvt*urgentOnBell: true
+*.URxvt.urgentOnBell: true
 URxvt.secondaryScroll: true
-URxvt.font: xft:Source Code Pro:size=10
-URxvt.perl-ext-common: default,matcher
-URxvt.urlLauncher: firefox
+URxvt.font: xft:Source Code Pro:pixelsize=11
+urxvt*perl-lib:         /usr/lib/urxvt/perl/
+URxvt.perl-ext-common: default,font-size,keyboard-select,clipboard,url-select
+URxvt.url-launcher: /usr/bin/google-chrome-unstable
 URxvt.matcher.button: 1
-URxvt.tabbed.saveLines: 1000
-URxvt.tabbed.scrollBar: false
-URxvt.tabbed.tabbar-fg: 3
-URxvt.tabbed.tabbar-bg: 0
-URxvt.tabbed.tab-fg: 0
-URxvt.tabbed.tab-bg: 1
-URxvt.tabbed.secondaryScroll: true
-URxvt.tabbed.font: xft:Bitstream Vera Sans Mono:pixelsize=12
-URxvt*inheritPixmap: true 
-URxvt*shading: 70
+URxvt.keysym.C-u: perl:matcher:last
+URxvt.keysym.M-u: perl:matcher:list
 
-URxvt.background: #262626
-URxvt.foreground: #A8A8A8
 
-URxvt.colorBD: #9B8AA8
-URxvt.colorIT: #9B8AA8
-URxvt.colorUL: #B29EB8
+URxvt.keysym.C-0x2b:     perl:font-size:increase
+URxvt.keysym.C-0x2d:   perl:font-size:decrease
+URxvt.keysym.C-A-0x2b:   perl:font-size:incglobal
+URxvt.keysym.C-A-0x2d: perl:font-size:decglobal
 
-URxvt.color0: #404040
-URxvt.color8: #767676
+URxvt.url-select.launcher:  google-chrome-unstable
+URxvt.url-select.underline: true
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
 
-URxvt.color7: #D0D0D0
-URxvt.color15: #FFFFFF
+URxvt.keysym.Control-Up:   \033[1;5A
+URxvt.keysym.Control-Down:    \033[1;5B
+URxvt.keysym.Control-Left:    \033[1;5D
+URxvt.keysym.Control-Right:    \033[1;5C
 
-URxvt.color1: #D0689D
-URxvt.color9: #FFA0D5
 
-URxvt.color2: #5E9A34
-URxvt.color10: #95D16B
+URxvt.color0: #000000
+URxvt.color1: #C75646
+URxvt.color2: #8EB33B
+URxvt.color3: #D0B03C
+URxvt.color4: #72B3CC
+URxvt.color5: #C8A0D1
+URxvt.color6: #218693
+URxvt.color7: #B0B0B0
+URxvt.color8: #5D5D5D
+URxvt.color9: #E09690
+URxvt.color10: #CDEE69
+URxvt.color11: #FFE377
+URxvt.color12: #9CD9F0
+URxvt.color13: #FBB1F9
+URxvt.color14: #77DFD8
+URxvt.color15: #F7F7F7
 
-URxvt.color3: #AE8250
-URxvt.color11: #E4B885
-
-URxvt.color4: #698FC2
-URxvt.color12: #9EC5F9
-
-URxvt.color5: #CE9CF0
-URxvt.color13: #E8A8FF
-
-URxvt.color6: #2E9E6C
-URxvt.color14: #6CD5A3
+URxvt.foreground: #FFFFFF
+URxvt.background: rgba:2400/2400/2400/dcdc
+urxvt.print-pipe: "cat > /dev/null"
