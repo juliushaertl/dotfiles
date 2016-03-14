@@ -3,6 +3,10 @@
 # define some xrandr layouts to use
 MODES=(internal station presentation)
 
+function notify {
+	notify-send --urgency critical $@
+}
+
 function mode_internal {
 	xrandr \
 		--output DP1 --off \
@@ -12,19 +16,23 @@ function mode_internal {
 		--output HDMI2 --off \
 		--output HDMI1 --off \
 		--output DP2 --off \
-		--output eDP1 --mode 1920x1080 --pos 0x0 --rotate normal 
+		--output eDP1 --mode 1920x1080 --pos 0x0 --rotate normal --primary
+	notify switch internal
 }
 
 function mode_station {
+    xrandr --output DP2-3 --auto --output eDP1 --off
+    sleep 3
 	xrandr \
 	       --output eDP1 --off \
 	       --output DP1 --off \
 	       --output DP2-1 --mode 1920x1080 --pos 0x0 --rotate normal \
 	       --output DP2-2 --off \
-	       --output DP2-3 --mode 1920x1080 --pos 1920x0 --rotate normal \
+	       --output DP2-3 --mode 1920x1080 --pos 1920x0 --rotate normal --left-of DP2-1 --primary \
 	       --output HDMI2 --off \
 	       --output HDMI1 --off \
 	       --output DP2 --off
+	notify switch station
 }
 function mode_presentation {
 	xrandr \
@@ -35,7 +43,7 @@ function mode_presentation {
 		--output HDMI2 --off \
 		--output HDMI1 --off \
 		--output DP2 --off \
-		--output eDP1 --mode 1920x1080 --pos 0x0 --rotate normal 
+		--output eDP1 --mode 1920x1080 --pos 0x0 --rotate normal --primary
 }
 
 function is_connected {
@@ -49,17 +57,10 @@ MODE=$1
 
 # Handeling dock / undock udev events
 
-if [[ "$ACTION" == "add" ]]
-then
-	mode_station
-	exit
-fi
+# echo $MODE >> /tmp/docklog
 
-if [[ "$ACTION" == "remove" ]]
-then
-	mode_internal
-	exit
-fi
+[[ "$MODE" == "add" ]] && mode_station && exit
+[[ "$MODE" == "remove" ]] && mode_internal && exit
 
 # Switch to given mode
 

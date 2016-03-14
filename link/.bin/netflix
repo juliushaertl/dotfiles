@@ -1,0 +1,4 @@
+#!/bin/bash
+
+google-chrome-unstable --app=http://www.netflix.com/browse
+
