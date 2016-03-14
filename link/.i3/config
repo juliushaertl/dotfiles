@@ -10,6 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+new_window normal 1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -86,15 +87,6 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-workspace 1 output DP-1-1
-workspace 2 output DP-1-1
-workspace 3 output DP-1-1
-workspace 4 output DP-1-1
-workspace 5 output DP-1-2
-workspace 6 output DP-1-2
-workspace 7 output DP-1-2
-workspace 8 output DP-1-2
-
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -106,6 +98,7 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -119,6 +112,18 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+workspace 1 output DP2-3
+workspace 2 output DP2-3
+workspace 3 output DP2-3
+workspace 4 output DP2-3
+workspace 5 output DP2-3
+workspace 6 output DP2-1
+workspace 7 output DP2-1 
+workspace 8 output DP2-1
+workspace 9 output DP2-1
+workspace 10 output DP2-1
+
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -129,6 +134,10 @@ bindsym $mod+Shift+r restart
 #
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
+
+bindsym $mod+Shift+s sticky toggle
+bindsym $mod+y fullscreen disable; floating enable; resize set 600 400; sticky enable; move window to position 1000 300
+
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -154,55 +163,88 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
 bar {
-#    status_command python $HOME/.i3/i3pystatus
-    status_command python $HOME/working/i3pystatus/mytest.py
-    position          top
+    status_command python $HOME/.i3/i3pystatus
+    position bottom
     workspace_buttons yes
     tray_output primary
+    tray_output DP2-3
+    tray_output DP2-1
+    tray_output eDP1
+    font pango:Source Code Pro, FontAwesome 9
     colors {
+        separator #333333
         background #333333
-        statusline #ffffff
-        separator #666666
-        focused_workspace  #888888 #666666 #ffffff
-        active_workspace   #333333 #5f676a #ffffff
-        inactive_workspace #333333 #222222 #888888
-        urgent_workspace   #2f343a #900000 #ffffff
+        statusline #B0B0B0
+        focused_workspace #D0B03C #D0B03C #333333
+        active_workspace #333333 #333333 #FFFFFF
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #C75646 #C75646 #FFFFFF
     }
-    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-    font pango:DejaVu Sans 9
+    tray_padding 5
 }
 
 # custom keybindings
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 3%-
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 3%+
 bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
-
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -5
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +5
-
-bindsym $mod+Delete exec --no-startup-id i3lock -c 333333
-
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -10
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +10
 bindsym XF86Display exec --no-startup-id xrandr --auto
-
-exec --no-startup-id feh --bg-center /home/jus/Pictures/Wallpapers/archlinux.png
-exec --no-startup-id clipit
-exec --no-startup-id dropboxd
-exec --no-startup-id dunst
-exec --no-startup-id nm-applet
-exec --no-startup-id rofi
+bindsym Control+Mod1+l exec --no-startup-id slock 
+bindsym $mod+Shift+Return exec /home/jus/.bin/rofi
+bindsym $mod+Shift+F12 exec /home/jus/.bin/autorandr
+bindsym $mod+Shift+F11 exec /home/jus/.bin/undock
 
 workspace_auto_back_and_forth yes
 
 # workspace assignments
-#assign [class="Thunderbird"] 2
+assign [class="Thunderbird"] 2
 assign [class="Pidgin"] 3
-#assign [class="Firefox"] 1
+assign [class="Firefox"] 1
 assign [class="Steam"] 10
 
-# starting a specially named term automatically
-#exec --no-startup-id xfce4-terminal -name scratchpad -e /usr/bin/nano
-# # move this to scratchpad, if active
-# for_window [class="URxvt" instance="scratchpad"] move scratchpad
+for_window [class="Keepassx"] floating enable, border normal, move position center
+for_window [class="Pavucontrol"] floating enable, border normal, move position center
+for_window [instance="Calendar"] floating enable, border normal, move position center
+for_window [class="chrome"] border none
 
+# basic red colors
+
+client.focused #4E9C00 #4E9C00 #FFFFFF #FFFFFF
+client.focused_inactive #1B3600 #1B3600 #888888 #FFFFFF
+client.unfocused #333333 #333333 #888888 #FFFFFF
+client.urgent #C20000 #C20000 #FFFFFF #FFFFFF
+
+
+# some autostart stuff
+exec --no-startup-id dunst
+exec --no-startup-id clipit
+exec --no-startup-id redshift-gtk
+exec --no-startup-id owncloud
+exec --no-startup-id feh --bg-fill Pictures/3D-Futurama-diag__3k.jpg
+
+
+set $sysmenu "system:  [r]eload  [l]ogout  [p]oweroff  re[b]oot"
+bindsym $mod+Delete      mode $sysmenu
+
+mode $sysmenu {
+    bindsym r         restart
+    bindsym l         exit
+    bindsym p         exec shutdown -P now
+    bindsym b         exec shutdown -r now
+    bindsym Return    mode "default"
+    bindsym Escape    mode "default"
+}
+
+
+
+new_window pixel 1
+smart_gaps on
+
+
+client.focused          #D0B03C #D0B03C #000000
+client.focused_inactive #5D5D5D #333333 #B0B0B0
+client.unfocused        #333333 #333333 #B0B0B0
+client.urgent           #C75646 #C75646 #000000
+client.background       #151515
