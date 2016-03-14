@@ -1,0 +1,114 @@
+#!/bin/bash
+# scan multiple pages, apply ocr and merge them to one pdf document
+# requires: scanimage, stapler, convert, tesseract
+
+help_text() {
+    cat <<EOF
+Usage: $0 options
+
+OPTIONS:
+    -h          Show help
+    -c COLOR    Set mode to Lineart|Gray|Color
+    -o FILE     Set output file
+    -d DEVICE   Set scan device
+    -s          Single page mode
+EOF
+}
+
+checkdep() {
+    type $1 >/dev/null 2>&1 || { echo "$1 must be installed" ; exit; }
+}
+
+while getopts "hco:u:s" OPTION
+do
+    case $OPTION in
+        h)
+            help_text
+            exit
+            ;;
+        c)
+            MODE="--mode Color"
+            ;;
+        o)
+            OUTPUTFILE=$OPTARG
+            ;;
+        d)
+            DEVICE=$OPTARG
+            ;;
+        s)
+            SINGLEPAGE=YES
+            ;;
+        ?)
+            help_text
+            exit 1
+            ;;
+    esac
+done
+
+# environment setup
+TEMPFILE=/tmp/$$.tmp
+echo 0 > $TEMPFILE
+mkdir -p /tmp/scan
+
+# setup default options
+DATE=$(date +"%Y%m%d-%H%M%S")
+DEFAULT_DEVICE=$(scanimage -L | grep PID | cut -d " " -f2 | tr -cd '[[:alnum:]:]')
+DEFAULT_TARGET="/home/jus/unsorted"
+
+OUTPUTFILE=${OUTPUTFILE:-"$TARGET/scan-$DATE.pdf"}
+DEVICE=${DEVICE:-"$DEFAULT_DEVICE"}
+
+checkdep stapler
+checkdep tesseract
+checkdep scanimage
+checkdep convert 
+
+set -e
+
+# loop for each page
+while :
+do
+    COUNTER=$[$(cat $TEMPFILE) + 1]
+    
+    # scan image
+    echo "[page $COUNTER] scaning page"
+    scanimage -d $DEVICE --format=tiff --resolution 300 $MODE > /tmp/scan.tiff
+
+    # post processing
+    # detect orientation
+    echo "[page $COUNTER] detect orientation"
+    cp /tmp/scan.tiff /tmp/scan.ppm
+    tesseract /tmp/scan.ppm stdout -l deu -psm 0  > /tmp/orientation.txt 2>&1
+    ORIENTATION=`cat /tmp/orientation.txt | head -2l | tail -1l | cut -d" " -f4`
+    if [[ $ORIENTATION =~ ^[0-9]+$ && $ORIENTATION != "0" ]]; then
+        convert /tmp/scan.ppm -rotate $ORIENTATION /tmp/scan.tiff
+    fi
+
+    # ocr to pdf
+    echo "[page $COUNTER] run ocr and convert to pdf"
+    tesseract -l deu /tmp/scan.tiff /tmp/scan pdf > /dev/null 2>&1
+
+    # final file and cleanup
+    mv /tmp/scan.pdf /tmp/scan/page-$COUNTER.pdf
+    echo $COUNTER > $TEMPFILE
+
+    # break loop in single page mode
+    if [[ $SINGLEPAGE == "YES" ]]; then break; fi
+
+    # ask for another page
+    read -p "Scan another page? (Y/n) " -n 1 REPLY
+    REPLY=${REPLY:Y}
+    if [[ $REPLY =~ ^[Nn]$ ]]; then break; fi
+
+done
+
+# build final document
+stapler cat /tmp/scan/page-*.pdf $OUTPUTFILE
+
+echo "Saved to $OUTPUTFILE"
+
+# cleanup
+set +e
+rm -r /tmp/scan/
+unlink $TEMPFILE
+

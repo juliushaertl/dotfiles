@@ -28,3 +28,9 @@
 [submodule "link/.vim/bundle/vim-nerdtree-tabs"]
 	path = link/.vim/bundle/vim-nerdtree-tabs
 	url = https://github.com/jistr/vim-nerdtree-tabs.git
+[submodule "link/.vim/bundle/table-mode"]
+	path = link/.vim/bundle/table-mode
+	url = git@github.com:dhruvasagar/vim-table-mode.git
+[submodule "link/.vim/bundle/Vundle.vim"]
+	path = link/.vim/bundle/Vundle.vim
+	url = https://github.com/gmarik/Vundle.vim.git
