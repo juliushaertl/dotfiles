@@ -8,7 +8,13 @@
     merge-branch = !git checkout master && git merge @{-1}
     up = !git fetch origin && git rebase origin/master
 	d = difftool
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    gg = grep --break --heading -n
+    unpushed = log --stat origin/master..HEAD
+    cl = log --graph --pretty=format:"%an: %s%C(yellow)%d%Creset %Cgreen(%cr)%Creset" --date=relative
+    cls = log --pretty=format:"%an (%ae): %Cyellow%s%Creset" --shortstat
+    fc = commit --amend -m
+    diff = diff --word-diff
 [color]
 	ui = auto
 [color "branch"]
@@ -28,3 +34,13 @@
 	default = simple
 [diff]
 	tool = vimdiff
+[init]
+	templatedir = /home/jus/.git-templates
+
+# https://groups.google.com/forum/#!msg/binary-transparency/f-BI4o8HZW0/MDmnWideAgAJ
+[transfer] 
+    fsckobjects = true 
+[fetch] 
+    fsckobjects = true 
+[receive] 
+    fsckObjects = true 
