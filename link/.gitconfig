@@ -1,6 +1,7 @@
 [user]
-	name = Julius Haertl
+	name = Julius Härtl
 	email = jus@bitgrid.net
+	signingkey = 4C614C6ED2CDE6DF
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = vim
@@ -15,6 +16,10 @@
     cls = log --pretty=format:"%an (%ae): %Cyellow%s%Creset" --shortstat
     fc = commit --amend -m
     diff = diff --word-diff
+    # Usage: git signoff-rebase [base-commit]
+    signoff-rebase = "!GIT_SEQUENCE_EDITOR='sed -i -re s/^pick/e/' sh -c 'git rebase -i $1 && while git rebase --continue; do git commit --amend --signoff --no-edit; done' -"
+    branch-history = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+    sb = !git stash && git checkout -b $1 && git stash pop @stash@{0}
 [color]
 	ui = auto
 [color "branch"]
@@ -31,7 +36,7 @@
 	changed = green
 	untracked = cyan
 [push]
-	default = simple
+	default = current
 [diff]
 	tool = vimdiff
 [init]
@@ -44,3 +49,8 @@
     fsckobjects = true 
 [receive] 
     fsckObjects = true 
+[commit]
+    gpgsign = true
+
+[bz]
+	browser = google-chrome
