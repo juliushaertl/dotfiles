@@ -10,9 +10,6 @@
 [submodule "link/.vim/bundle/vim-gitgutter"]
 	path = link/.vim/bundle/vim-gitgutter
 	url = git://github.com/airblade/vim-gitgutter.git
-[submodule "link/.oh-my-zsh"]
-	path = link/.oh-my-zsh
-	url = git://github.com/robbyrussell/oh-my-zsh.git
 [submodule "link/.vim/bundle/vim-airline"]
 	path = link/.vim/bundle/vim-airline
 	url = https://github.com/bling/vim-airline
