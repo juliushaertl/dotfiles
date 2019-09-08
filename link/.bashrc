@@ -52,4 +52,4 @@ complete -W "$(echo $(grep '^ssh ' .bash_history | sort -u | sed 's/^ssh //'))" 
 #complete -o default -o nospace -W "$(grep -i -e '^host ' ~/.ssh/config | awk '{print substr($0, index($0,$2))}' ORS=' ')" ssh scp sftp
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH"
+#PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH"
