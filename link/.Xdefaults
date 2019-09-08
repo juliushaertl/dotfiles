@@ -6,21 +6,23 @@ URxvt.scrollBar: false
 URxvt*urgentOnBell: true
 *.URxvt.urgentOnBell: true
 URxvt.secondaryScroll: true
-URxvt.font: xft:Source Code Pro:pixelsize=11
+URxvt.font: xft:Source Code Pro-8
+
 urxvt*perl-lib:         /usr/lib/urxvt/perl/
-URxvt.perl-ext-common: default,font-size,keyboard-select,clipboard,url-select
-URxvt.url-launcher: /usr/bin/google-chrome-unstable
+URxvt.perl-ext-common: default,font-size,keyboard-select,clipboard,url-select,new-window
+URxvt.url-launcher: /usr/bin/google-chrome-stable
 URxvt.matcher.button: 1
 URxvt.keysym.C-u: perl:matcher:last
 URxvt.keysym.M-u: perl:matcher:list
 
+URxvt.keysym.Control-Shift-N: perl:new-window
 
 URxvt.keysym.C-0x2b:     perl:font-size:increase
 URxvt.keysym.C-0x2d:   perl:font-size:decrease
 URxvt.keysym.C-A-0x2b:   perl:font-size:incglobal
 URxvt.keysym.C-A-0x2d: perl:font-size:decglobal
 
-URxvt.url-select.launcher:  google-chrome-unstable
+URxvt.url-select.launcher:  google-chrome-stable
 URxvt.url-select.underline: true
 URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
@@ -31,6 +33,8 @@ URxvt.keysym.Control-Down:    \033[1;5B
 URxvt.keysym.Control-Left:    \033[1;5D
 URxvt.keysym.Control-Right:    \033[1;5C
 
+
+urxvt.print-pipe: "cat > /dev/null"
 
 URxvt.color0: #000000
 URxvt.color1: #C75646
@@ -51,4 +55,5 @@ URxvt.color15: #F7F7F7
 
 URxvt.foreground: #FFFFFF
 URxvt.background: rgba:2400/2400/2400/dcdc
-urxvt.print-pipe: "cat > /dev/null"
+
+Xcursor.theme: Adwaita

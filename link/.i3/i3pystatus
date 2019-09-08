@@ -6,7 +6,7 @@ from  i3pystatus.cpu_usage_bar import *
 
 status = Status(standalone=True)
 
-status.register("clock", format="%a/%d %X", log_level=0)
+status.register("clock", format="%a/%d %H:%M", log_level=0)
 status.register("cpu_usage_bar", bar_type="vertical", log_level=0)
 status.register("load",format="{avg1}",interval=2,color="#00ff00", log_level=0)
 
@@ -21,21 +21,14 @@ status.register("battery",
     log_level=0
 )
 
-status.register("openvpn",
-    vpn_name="bitgrid",
-    format="",
-    colour_down='#5D5D5D',
-    colour_up='#8EB33B',
-    log_level=0
-)
-status.register("network",
-    interface="wwp0s20u4i6",
-    format_up="",
-    format_down="",
-    color_down='#5D5D5D',
-    color_up='#8EB33B',
-    log_level=0
-)
+#istatus.register("network",
+#    interface="wwp0s20u4i6",
+#    format_up="",
+#    format_down="",
+#    color_down='#5D5D5D',
+#    color_up='#8EB33B',
+#    log_level=0
+#)
 
 status.register("network",
     interface="enp0s25",
@@ -57,11 +50,11 @@ status.register("network",
 
 
 
-status.register("disk",
-    path="/home",
-    format="/home {free:.1f}",
-    log_level=0
-)
+#status.register("disk",
+#    path="/home",
+#    format="/home {free:.1f}",
+#    log_level=0
+#)
 #status.register("disk",
 #    path="/",
 #    format="/ {free:.1f}")
@@ -69,10 +62,12 @@ status.register("disk",
 status.register("pulseaudio",
     format=" {volume}", log_level=0)
 
-status.register("updates",
-                format = " {count}",
-                format_no_updates = " ∅ ",
-                backends = [pacman.Pacman()],
-                log_level=0)
+#status.register("keyboard_locks", format="{caps}")
+
+#status.register("updates",
+#                format = " {count}",
+#                format_no_updates = " ∅ ",
+#                backends = [pacman.Pacman()],
+#                log_level=0)
 
 status.run()

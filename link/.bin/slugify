@@ -6,7 +6,16 @@ import os.path
 import re
 import argparse
 import unidecode
+from termcolor import colored
 
+def yellow(text):
+    return colored(text, 'yellow')
+
+def red(text):
+    return colored(text, 'red')
+
+def green(text):
+    return colored(text, 'green')
 def slugify(input, seperator='-', keep=['.']):
 
     output = unidecode.unidecode(input)
@@ -42,12 +51,15 @@ def main():
     args = parser.parse_args()
 
     if args.dry:
-        print("= Running in dry mode - files will not get touched ==========")
+        print(colored("= Running in dry mode - files will not get touched",
+            'yellow'))
 
     for f in args.files:
+
         old_file = str(f)
         new_file = slugify(f,seperator=args.seperator)
-        print("%s -> %s" % ( str(f), str(new_file) ) )
+
+        print("%s -> %s" % ( str(f), green(str(new_file)) ) )
         if not args.dry:
             os.rename(old_file, new_file)
      
