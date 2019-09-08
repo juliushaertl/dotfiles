@@ -5,7 +5,6 @@ if [ -f ~/.aliases ]; then
 fi
 
 export CLICOLOR=1
-HISTSIZE=1000
 EDITOR="vim"
 HISTCONTROL=ignoredups
 HISTFILESIZE=10000
@@ -44,7 +43,7 @@ prompt_git_info () {
   echo " $is_dirty$git_branch${c_reset}$has_staged"
 }
 
-PS1=$BLUE'\u@\h '$YELLOW'\w'$RED'$(prompt_git_info)'$NIL' '
+PS1=$GREEN'\u@\h '$YELLOW'\w'$CYAN'$(prompt_git_info)'$NIL' '
 
 # Load RVM into a shell session
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 

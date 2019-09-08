@@ -31,3 +31,6 @@
 [submodule "link/.vim/bundle/Vundle.vim"]
 	path = link/.vim/bundle/Vundle.vim
 	url = https://github.com/gmarik/Vundle.vim.git
+[submodule "link/.oh-my-zsh"]
+	path = link/.oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh
