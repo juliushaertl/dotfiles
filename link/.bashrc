@@ -4,6 +4,10 @@ if [ -f ~/.aliases ]; then
 	. ~/.aliases
 fi
 
+if [ -f ~/.profile ]; then
+	. ~/.profile
+fi
+
 export CLICOLOR=1
 EDITOR="vim"
 HISTCONTROL=ignoredups
@@ -51,5 +55,5 @@ PS1=$GREEN'\u@\h '$YELLOW'\w'$CYAN'$(prompt_git_info)'$NIL' '
 complete -W "$(echo $(grep '^ssh ' .bash_history | sort -u | sed 's/^ssh //'))" ssh scp
 #complete -o default -o nospace -W "$(grep -i -e '^host ' ~/.ssh/config | awk '{print substr($0, index($0,$2))}' ORS=' ')" ssh scp sftp
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 #PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH"

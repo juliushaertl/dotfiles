@@ -28,17 +28,21 @@ alias gitc='git commit'
 alias gitp='git push'
 alias gitl='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 
-# quick wifi switch
-alias sw='sudo netctl switch-to'
+export QT_STYLE_OVERRIDE=gtk
+export QT_SELECT=qt5
 
-# useful small scripts
-
-
-# useful small scripts
-function stopwatch(){
-  date1=`date +%s`; 
-   while true; do 
-    echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r"; 
-   done
+occ() {
+	cd ~/repos/nextcloud/nc-dev && docker-compose exec nextcloud occ $@ && cd -
+}
+occ2() {
+	cd ~/repos/nextcloud/nc-dev && docker-compose exec nextcloud2 occ $@ && cd -
+}
+nc-dev() {
+	cd ~/repos/nextcloud/nc-dev && docker-compose $@ && cd -
 }
 
+if [[ $LANG = '' ]]; then
+	export LANG=en_US.UTF-8
+fi
+
+alias git-word-diff='git diff --text --word-diff=porcelain | awk -v red="$(tput setaf 1)" -v green="$(tput setaf 2)" -v reset="$(tput sgr0)" -f ~/.bin/worddiff.awk | grep "^[+-]"'

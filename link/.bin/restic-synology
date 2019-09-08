@@ -1,6 +1,6 @@
 #!/bin/bash
 
 export RESTIC_REPOSITORY="sftp:admin@zoidberg:/backup/restic"
-export RESTIC_PASSWORD=`usr/bin/secret-tool lookup backup/restic/synology password`
+export RESTIC_PASSWORD=`/usr/bin/secret-tool lookup backup/restic/synology password`
 
 restic "$@" 

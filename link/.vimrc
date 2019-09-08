@@ -19,7 +19,6 @@ set ruler
 :autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 
 set showmatch
-set textwidth=80
 match ErrorMsg '\%>80v.\+'
 
 " No Swap Files
