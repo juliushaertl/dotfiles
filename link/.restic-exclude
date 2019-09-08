@@ -1,0 +1,13 @@
+$HOME/Downloads/
+$HOME/.AndroidStudio*/
+$HOME/.PhpStorm*/
+$HOME/.android/
+$HOME/.Android/
+$HOME/.var/
+$HOME/.mozilla/
+$HOME/.cache/
+node_modules
+/mnt/storage/music
+/mnt/storage/movies
+/mnt/storage/software
+/mnt/storage/copy

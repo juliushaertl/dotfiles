@@ -1,0 +1,4 @@
+#/bin/bash
+
+# Sync current images from local disc to archive storage
+rsync -Pha --delete --stats ~/Bilder/* /mnt/storage/photos/
