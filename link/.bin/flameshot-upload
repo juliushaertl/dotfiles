@@ -1,0 +1,13 @@
+#!/bin/bash
+
+PATH_IMG=/tmp/$RANDOM$RANDOM$RANDOM
+
+mkdir $PATH_IMG &&
+
+RESULT_CAP=$(flameshot gui -p $PATH_IMG -r > $PATH_IMG/img.png && head -n 1 $PATH_IMG/img.png)
+
+if [[ $RESULT_CAP != "screenshot aborted" ]] ; then
+	dropit $PATH_IMG/img.png    
+fi
+
+rm -rf $PATH_IMG;
