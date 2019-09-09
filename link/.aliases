@@ -45,4 +45,4 @@ if [[ $LANG = '' ]]; then
 	export LANG=en_US.UTF-8
 fi
 
-alias git-word-diff='git diff --text --word-diff=porcelain | awk -v red="$(tput setaf 1)" -v green="$(tput setaf 2)" -v reset="$(tput sgr0)" -f ~/.bin/worddiff.awk | grep "^[+-]"'
+alias git-word-diff='git diff --text --word-diff=porcelain | awk -v red="$(tput setaf 1)" -v green="$(tput setaf 2)" -v reset="$(tput sgr0)" -f ~/.dotfiles/scripts/worddiff.awk | grep "^[+-]"'

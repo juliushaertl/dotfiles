@@ -7,7 +7,8 @@ if [ $# -eq 1 ]; then
     filename=$(basename "$1")
     echo "Adding $filename to the repo"
     cp -Rv $1 "$HOME/.dotfiles/link/$filename"
-    mv $1 "$HOME/.dotfiles_old/$filename"
+    #mv $1 "$HOME/.dotfiles_old/$filename"
+    rm -r $1
     ln -s "$HOME/.dotfiles/link/$filename" "$HOME/$filename"
     cd .dotfiles && git status; cd ..
     echo "Ready to be commited"

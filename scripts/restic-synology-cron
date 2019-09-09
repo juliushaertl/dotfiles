@@ -1,0 +1,9 @@
+#!/bin/bash
+
+restic-synology check
+
+restic-synology backup --exclude-caches --exclude-file=/home/jus/.restic-exclude /home/jus #/mnt/storage
+
+restic-synology forget --keep-hourly 24 --keep-daily 14 --keep-weekly 8 --keep-monthly 24
+
+restic-synology prune
