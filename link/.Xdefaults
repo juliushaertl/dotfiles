@@ -6,7 +6,7 @@ URxvt.scrollBar: false
 URxvt*urgentOnBell: true
 *.URxvt.urgentOnBell: true
 URxvt.secondaryScroll: true
-URxvt.font: xft:Source Code Pro-8
+URxvt.font: 'xft:Source Code Pro-10, xft:Noto Emoji'
 
 urxvt*perl-lib:         /usr/lib/urxvt/perl/
 URxvt.perl-ext-common: default,font-size,keyboard-select,clipboard,url-select,new-window

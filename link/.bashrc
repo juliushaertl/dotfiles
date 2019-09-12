@@ -4,9 +4,9 @@ if [ -f ~/.aliases ]; then
 	. ~/.aliases
 fi
 
-if [ -f ~/.profile ]; then
-	. ~/.profile
-fi
+#if [ -f ~/.profile ]; then
+#	. ~/.profile
+#fi
 
 export CLICOLOR=1
 EDITOR="vim"
