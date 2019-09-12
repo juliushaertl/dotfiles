@@ -37,3 +37,6 @@
 [submodule "link/.vim/bundle/neobundle.vim"]
 	path = link/.vim/bundle/neobundle.vim
 	url = https://github.com/Shougo/neobundle.vim
+[submodule "link/.vim/bundle/vim-airline-themes"]
+	path = link/.vim/bundle/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
