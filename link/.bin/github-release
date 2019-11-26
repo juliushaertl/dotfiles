@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export GITHUB_TOKEN=`/usr/bin/secret-tool lookup github/cli/api token`
+
+/usr/bin/github-release $@
